@@ -42,7 +42,7 @@ function loadwidget(hash, widgets)
         console.log("Load Widget:" + key);
         var w = unescape(widgets[key]);
         var div_place = $("#duckpunch-"+hash);
-        div_place.html(w);
+        div_place.append(w);
     }
 }
 

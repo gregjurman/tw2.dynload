@@ -31,16 +31,13 @@ class Duckpunch(twc.Widget):
                 else:
                     pass
 
-            
-            #self._widgets[c.id] = [a.encode() for a in c.display().split("\n")]
-
             self._widgets[c.id.encode()] = urllib.quote(c.display().unescape().encode())
 
             #self.add_call(base.js_puncher.load_css(twc.js_symbol(self._css_resources)))
             #self.add_call(base.js_puncher.load_js(twc.js_symbol(self._js_resources)))
             #self.add_call(base.js_puncher.load_widget(twc.js_symbol(self._widgets)))
-            self.add_call( base.js_puncher.punch_widget(
-                self._hash,
-                twc.js_symbol(self._js_resources),
-                twc.js_symbol(self._css_resources),
-                twc.js_symbol(self._widgets)) )
+        self.add_call( base.js_puncher.punch_widget(
+            self._hash,
+            twc.js_symbol(self._js_resources),
+            twc.js_symbol(self._css_resources),
+            twc.js_symbol(self._widgets)) )
