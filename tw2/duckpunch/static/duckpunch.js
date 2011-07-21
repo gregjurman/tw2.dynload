@@ -5,14 +5,14 @@ function loadjs(files)
     $.each(files, function (index, filename) {
         console.log("Load JS:" + filename);
         if ($.inArray(filename, js_check_list) == -1)
-        { 
+        {
+            js_check_list.push(filename); 
             $.ajax({
                 url: filename,
                 dataType: "script",
                 async: false,
-                success: function(){   
+                success: function() {
                     console.log("Success Load JS:" + this.url);
-                    js_check_list.push(this.url);
                 }
             });
         }
