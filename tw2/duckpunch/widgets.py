@@ -34,7 +34,7 @@ class Duckpunch(twc.Widget):
             
             #self._widgets[c.id] = [a.encode() for a in c.display().split("\n")]
 
-            self._widgets[c.id] = urllib.quote(c.display().unescape().encode())
+            self._widgets[c.id.encode()] = urllib.quote(c.display().unescape().encode())
 
             #self.add_call(base.js_puncher.load_css(twc.js_symbol(self._css_resources)))
             #self.add_call(base.js_puncher.load_js(twc.js_symbol(self._js_resources)))
