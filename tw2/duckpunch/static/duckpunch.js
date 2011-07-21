@@ -4,16 +4,19 @@ function loadjs(files)
 {
     $.each(files, function (index, filename) {
         console.log("Load JS:" + filename);
-
-        $.ajax({
-            url: filename,
-            dataType: "script",
-            async: false,
-            success: function(){   
-                console.log("Success Load JS:" + this.url);
-                js_check_list.push(this.url);
-            }
-        });
+        if ($.inArray(filename, js_check_list) == -1)
+        { 
+            $.ajax({
+                url: filename,
+                dataType: "script",
+                async: false,
+                success: function(){   
+                    console.log("Success Load JS:" + this.url);
+                    js_check_list.push(this.url);
+                }
+            });
+        }
+        else { console.log("Already Loaded JS: "+filename+". Skipping.");}
     });
 }
 
@@ -32,19 +35,20 @@ function loadcss(files)
 }
 
 
-function loadwidget(widgets)
+function loadwidget(hash, widgets)
 {
     for (key in widgets)
     {
         console.log("Load Widget:" + key);
         var w = unescape(widgets[key]);
-        $(w).appendTo("#"+key);
+        var div_place = $("#duckpunch-"+hash);
+        div_place.html(w);
     }
 }
 
-function punch_widget(js_resources, css_resources, widgets)
+function punch_widget(hash, js_resources, css_resources, widgets)
 {
     loadjs(js_resources);
     loadcss(css_resources);
-    loadwidget(widgets);
+    loadwidget(hash, widgets);
 }

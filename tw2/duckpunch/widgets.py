@@ -2,8 +2,7 @@ import tw2.core as twc
 import tw2.jquery as jq
 import base
 import urllib
-
-from genshi import Markup as _M
+from uuid import uuid4
 
 class Duckpunch(twc.Widget):
     template = "mako:tw2.duckpunch.templates.duckpunch"
@@ -17,6 +16,7 @@ class Duckpunch(twc.Widget):
     def prepare(self):
         super(Duckpunch, self).prepare()
 
+        self._hash = str(uuid4())
         self._js_resources = []
         self._css_resources = []
         self._widgets = {}
@@ -40,6 +40,7 @@ class Duckpunch(twc.Widget):
             #self.add_call(base.js_puncher.load_js(twc.js_symbol(self._js_resources)))
             #self.add_call(base.js_puncher.load_widget(twc.js_symbol(self._widgets)))
             self.add_call( base.js_puncher.punch_widget(
+                self._hash,
                 twc.js_symbol(self._js_resources),
                 twc.js_symbol(self._css_resources),
                 twc.js_symbol(self._widgets)) )
