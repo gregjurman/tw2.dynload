@@ -1,2 +1,2 @@
-recursive-include tw2/duckpunch/templates *
-recursive-include tw2/duckpunch/static *
+recursive-include tw2/dynload/templates *
+recursive-include tw2/dynload/static *

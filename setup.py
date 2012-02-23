@@ -1,12 +1,12 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='tw2.duckpunch',
+    name='tw2.dynload',
     version='2.0b1',
     description='Allow loading of TW2 widgets into already loaded DOM.',
     author='Greg Jurman',
     author_email='gdj2214@rit.edu',
-    url='https://github.com/gregjurman/tw2.duckpunch',
+    url='https://github.com/gregjurman/tw2.dynload',
     install_requires=[
         "tw2.core",
         "tw2.jquery",
@@ -21,7 +21,7 @@ setup(
     entry_points="""
         [tw2.widgets]
         # Register your widgets so they can be listed in the WidgetBrowser
-        widgets = tw2.duckpunch
+        widgets = tw2.dynload
     """,
     keywords = [
         'toscawidgets.widgets',

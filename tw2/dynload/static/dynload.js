@@ -39,14 +39,14 @@ function loadwidget(hash, widgets)
 {
     for (key in widgets)
     {
-        console.log("Load Widget:" + key);
+        console.log("Load Widget: " + key);
         var w = unescape(widgets[key]);
-        var div_place = $("#duckpunch-"+hash);
+        var div_place = $("#dynload-"+hash);
         div_place.append(w);
     }
 }
 
-function punch_widget(hash, js_resources, css_resources, widgets)
+function load_widget(hash, js_resources, css_resources, widgets)
 {
     loadjs(js_resources);
     loadcss(css_resources);

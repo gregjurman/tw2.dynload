@@ -1,8 +1,8 @@
-.. tw2.duckpunch documentation master file.
+.. tw2.dynload documentation master file.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to tw2.duckpunch documentation!
+Welcome to tw2.dynload documentation!
 =========================================================
 
 Contents
@@ -12,11 +12,11 @@ Contents
    :maxdepth: 2
 
 
-:class:`tw.duckpunch.Duckpunch`
+:class:`tw2.dynload.DynLoadWidget`
 ----------------------------------------------------------
 
-.. autoclass:: tw.duckpunch.Duckpunch
-.. widgetbrowser:: tw.duckpunch.Duckpunch
+.. autoclass:: tw2.dynload.DynLoadWidget
+.. widgetbrowser:: tw2.dynload.DynLoadWidget
 
 .. note::
     See http://toscawidgets.org/documentation/WidgetBrowser to learn how to
