@@ -31,7 +31,7 @@ class DynLoaderWidget(twc.Widget):
                 else:
                     pass
 
-            self._widgets[c.id.encode()] = urllib.quote(c.display().unescape().encode())
+            self._widgets[c.id.encode()] = urllib.quote(c.display().encode())
 
         self.add_call( base.js_loader.load_widget(
             self._hash,
