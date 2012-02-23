@@ -45,7 +45,7 @@ function loadwidget(hash, widgets)
             widget_check_list.push(hash + key);
             console.log("Load Widget: " + key);
             var w = unescape(widgets[key]);
-            var div_place = $("#dynload-" + hash);
+            var div_place = $("#" + hash);
             div_place.append(w);
         } else { 
             console.log("Already Loaded Widget: " + key + ". Skipping.");
