@@ -30,7 +30,8 @@ setup(
         'Genshi',
         'mako',
         # formencode isn't actually needed, but is just here to patch up
-        # tw2.forms,
+        'tw2.forms',
+        'tw2.dyntext',
         'formencode',
         'strainer',
         'WebTest'
