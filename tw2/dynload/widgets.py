@@ -20,7 +20,7 @@ class DynLoaderWidget(twc.Widget):
 
         if self.hash is None:
             # User does not want a custom hash, set it randomly
-            self.hash = str(uuid4())
+            self.attrs['hash'] = self.hash = str(uuid4())
 
         if not hasattr(self, 'id') or 'id' not in self.attrs:
             self.attrs['id'] = self.id = "dynload-%s" % self.hash
@@ -33,9 +33,9 @@ class DynLoaderWidget(twc.Widget):
         for c in self.children:
             for res in c.resources:
                 if issubclass(res, twc.JSLink):
-                    self._js_resources.append("/resources/%s/%s"%(res.modname, res.filename))
+                    self._js_resources.append("/resources/%s/%s" % (res.modname, res.req().filename))
                 elif issubclass(res, twc.CSSLink):
-                    self._css_resources.append("/resources/%s/%s"%(res.modname, res.filename))
+                    self._css_resources.append("/resources/%s/%s"%(res.modname, res.req().filename))
                 else:
                     pass
 
@@ -43,8 +43,8 @@ class DynLoaderWidget(twc.Widget):
 
         self.selector = self.attrs['id'].replace(':', '\\:')
 
-        self.add_call( base.js_loader.load_widget(
+        self.add_call(base.js_loader.load_widget(
             self.selector,
             twc.js_symbol(self._js_resources),
             twc.js_symbol(self._css_resources),
-            twc.js_symbol(self._widgets)) )
+            twc.js_symbol(self._widgets)))
