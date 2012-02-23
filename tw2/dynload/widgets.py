@@ -4,17 +4,17 @@ import base
 import urllib
 from uuid import uuid4
 
-class Duckpunch(twc.Widget):
-    template = "mako:tw2.duckpunch.templates.duckpunch"
+class DynLoaderWidget(twc.Widget):
+    template = "mako:tw2.dynload.templates.dynload"
     # declare static resources here
     # you can remove either or both of these, if not needed
     resources = [
         jq.jquery_js,
-        base.js_puncher
+        base.js_loader
     ]
 
     def prepare(self):
-        super(Duckpunch, self).prepare()
+        super(DynLoaderWidget, self).prepare()
 
         self._hash = str(uuid4())
         self._js_resources = []
@@ -31,12 +31,9 @@ class Duckpunch(twc.Widget):
                 else:
                     pass
 
-            self._widgets[c.id.encode()] = urllib.quote(c.display().unescape().encode())
+            self._widgets[c.id.encode()] = urllib.quote(c.display().encode())
 
-            #self.add_call(base.js_puncher.load_css(twc.js_symbol(self._css_resources)))
-            #self.add_call(base.js_puncher.load_js(twc.js_symbol(self._js_resources)))
-            #self.add_call(base.js_puncher.load_widget(twc.js_symbol(self._widgets)))
-        self.add_call( base.js_puncher.punch_widget(
+        self.add_call( base.js_loader.load_widget(
             self._hash,
             twc.js_symbol(self._js_resources),
             twc.js_symbol(self._css_resources),

@@ -9,7 +9,7 @@ See http://toscawidgets.org/documentation/WidgetBrowser for more information
 import widgets
 import tw2.polymaps
 
-class DemoDuckpunch(widgets.Duckpunch):
+class DemoDynLoader(widgets.DynLoaderWidget):
     class PolyMap(tw2.polymaps.PolyMap):
         # Provide default parameters, value, etc... here
         # default = <some-default-value>
