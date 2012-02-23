@@ -1,9 +1,11 @@
 var js_check_list = new Array();
+var widget_check_list = new Array();
+
 
 function loadjs(files)
 {
     $.each(files, function (index, filename) {
-        console.log("Load JS:" + filename);
+        console.log("Load JS: " + filename);
         if ($.inArray(filename, js_check_list) == -1)
         {
             js_check_list.push(filename); 
@@ -12,7 +14,7 @@ function loadjs(files)
                 dataType: "script",
                 async: false,
                 success: function() {
-                    console.log("Success Load JS:" + this.url);
+                    console.log("Success Load JS: " + this.url);
                 }
             });
         }
@@ -25,7 +27,7 @@ function loadcss(files)
 {
     for (i in files)
     {
-        console.log("Load CSS:" + files[i]);
+        console.log("Load CSS: " + files[i]);
         var fileref=document.createElement("link");
         fileref.setAttribute("rel", "stylesheet");
         fileref.setAttribute("type", "text/css");
@@ -39,10 +41,15 @@ function loadwidget(hash, widgets)
 {
     for (key in widgets)
     {
-        console.log("Load Widget: " + key);
-        var w = unescape(widgets[key]);
-        var div_place = $("#dynload-"+hash);
-        div_place.append(w);
+        if ($.inArray(hash + key, widget_check_list) == -1) {
+            widget_check_list.push(hash + key);
+            console.log("Load Widget: " + key);
+            var w = unescape(widgets[key]);
+            var div_place = $("#dynload-" + hash);
+            div_place.append(w);
+        } else { 
+            console.log("Already Loaded Widget: " + key + ". Skipping.");
+        }
     }
 }
 
