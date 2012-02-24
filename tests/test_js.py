@@ -1,6 +1,6 @@
 import tw2.core as twc
 import tw2.dynload
-import tw2.dyntext
+import tw2.jqplugins.ui
 from nose.tools import eq_
 
 def request_local_tst():
@@ -26,9 +26,9 @@ def setup():
 
 def test_js_call():
     class DynLoaderTestWidget(tw2.dynload.DynLoaderWidget):
-        class TestTextWidget(tw2.dyntext.DynamicTextWidget):
-            data_url = "herp"
-            id = "derp"
+        class TestJQUIButtonWidget(tw2.jqplugins.ui.ButtonWidget):
+            id = "testbuttonwidget"
+            options = {'label': 'I am a button!'}
 
     w = DynLoaderTestWidget
     w_obj = w.req()
@@ -40,5 +40,5 @@ def test_js_call():
     assert(len(w_obj._js_calls) == 1)
 
     for js_call in w_obj._js_calls:
-        print type(js_call)
-        eq_(js_call[0], """load_widget("dynload-"""+w_obj.hash+"""", ['/resources/tw2.dyntext.widgets/static/dyntext.js', '/resources/tw2.jquery/static/jquery/1.7.1/jquery.js'], [], {'derp': '%0A%3Cspan%20id%3D%22derp%22%3E%3C/span%3E%0A'})""")
+        eq_(js_call[0],
+        """load_widget("dynload-""" + w_obj.hash + """", [\'/resources/tw2.jqplugins.ui/static/jquery/ui/1.8.17/js/jquery-ui.js\'], [\'/resources/tw2.jqplugins.ui/static/jquery/ui/1.8.17/css/smoothness/jquery-ui.css\'], {\'testbuttonwidget\': \'%0A%3Cdiv%20id%3D%22testbuttonwidget%3Awrapper%22%3E%0A%09%09%3Cbutton%20id%3D%22testbuttonwidget%22%3E%3C/button%3E%0A%3Cscript%20type%3D%22text/javascript%22%3E%0A%24%28document%29.ready%28function%28%29%20%7B%0A%20%20%20%20%24%28%22%23testbuttonwidget%22%29.button%28%7B%22label%22%3A%20%22I%20am%20a%20button%21%22%7D%29%3B%0A%7D%29%3B%0A%3C/script%3E%0A%0A%3C/div%3E%0A\'})""")
